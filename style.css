@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Poppins:wght@600;700;800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -5,20 +7,38 @@
 }
 
 :root {
-    --primary-color: #00d4ff;
-    --secondary-color: #ff6b6b;
-    --accent-color: #4ecdc4;
-    --dark-bg: #0a0a0a;
-    --card-bg: #1a1a1a;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-color: #00bfff; /* Updated from #00d4ff */
+    --primary-color-rgb: 0, 191, 255; /* Added for use in rgba */
+    --secondary-color: #ff6b6b; /* Kept same */
+    --accent-color: #4ecdc4; /* Kept same */
+    --dark-bg: #0a0a0a; /* Kept same */
+    --card-bg: #1c1c2e; /* Updated from #1a1a1a */
+    --text-primary: #ffffff; /* Kept same */
+    --text-secondary: #b0b0b0; /* Kept same, will verify contrast */
+    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Kept same */
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     background: var(--dark-bg);
     color: var(--text-primary);
+    font-size: 16px; /* Adjusted base font size */
+    line-height: 1.7; /* Adjusted base line height */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1 { font-weight: 800; }
+h2 { font-weight: 700; }
+h3 { font-weight: 600; }
+h4 { font-weight: 600; } /* Ensuring h4 also has a Poppins weight */
+h5 { font-weight: 600; } /* Ensuring h5 also has a Poppins weight */
+h6 { font-weight: 600; } /* Ensuring h6 also has a Poppins weight */
+
+/* Animated Background */
+.bg-animation {
     line-height: 1.6;
     overflow-x: hidden;
 }
@@ -69,8 +89,9 @@ nav.scrolled {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-family: 'Poppins', sans-serif; /* Ensure logo uses Poppins */
+    font-size: 1.8rem; /* Slightly increased logo size */
+    font-weight: 700; /* Adjusted logo font weight */
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -84,29 +105,47 @@ nav.scrolled {
 }
 
 .nav-links a {
+    font-family: 'Poppins', sans-serif; /* Nav links use Poppins */
+    font-weight: 600; /* Nav links font weight */
     color: var(--text-primary);
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Specify transitions */
     position: relative;
+    padding: 8px 12px; /* Adjusted padding for background effect */
+    border-radius: 5px; /* Rounded corners for the background effect */
+    outline: none; /* Custom focus will be handled */
 }
 
-.nav-links a:hover {
+.nav-links a:hover, .nav-links a:focus {
     color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.1); /* Subtle background fill */
+    outline: none; /* Ensure no default outline interferes */
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 0;
+    bottom: 0px; /* Adjust to be at the very bottom of the padding */
+    left: 50%; /* Start animation from center */
+    transform: translateX(-50%); /* Center the initial 0-width line */
     width: 0;
     height: 2px;
     background: var(--primary-color);
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover::after {
-    width: 100%;
+.nav-links a:hover::after, .nav-links a:focus::after {
+    width: 100%; /* Underline expands to full width */
+}
+
+/* Style for active navigation link */
+.nav-links a.active {
+    color: var(--primary-color);
+    font-weight: 700; /* Make active link a bit bolder */
+}
+
+.nav-links a.active:hover, .nav-links a.active:focus {
+    background-color: rgba(var(--primary-color-rgb), 0.15); /* Slightly darker background for active hover */
 }
 
 /* Mobile menu */
@@ -141,6 +180,7 @@ nav.scrolled {
 }
 
 .hero h1 {
+    font-family: 'Poppins', sans-serif; /* Ensure Poppins is applied */
     font-size: 4rem;
     margin-bottom: 1rem;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
@@ -156,6 +196,7 @@ nav.scrolled {
 }
 
 .typewriter {
+    font-family: 'Poppins', sans-serif; /* Typewriter uses Poppins */
     font-size: 1.5rem;
     color: var(--text-secondary);
     margin-bottom: 2rem;
@@ -187,16 +228,24 @@ nav.scrolled {
     border: none;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
+    font-family: 'Poppins', sans-serif; /* Button text uses Poppins */
+    font-weight: 700; /* Button text font weight */
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    outline: none; /* Prepare for custom focus */
 }
 
 .btn-primary {
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     color: white;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.4); /* Use new primary color in shadow */
+    filter: brightness(1.1); /* Slightly brighten */
 }
 
 .btn-secondary {
@@ -205,9 +254,11 @@ nav.scrolled {
     border: 2px solid var(--primary-color);
 }
 
-.btn:hover {
+.btn-secondary:hover, .btn-secondary:focus {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+    background: var(--primary-color);
+    color: var(--text-primary); /* Change text color to white on fill */
 }
 
 /* Section Styles */
@@ -220,7 +271,8 @@ nav.scrolled {
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif; /* Section titles use Poppins */
+    font-size: 2.8rem; /* Adjusted section title size */
     text-align: center;
     margin-bottom: 3rem;
     position: relative;
@@ -257,10 +309,16 @@ nav.scrolled {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 6rem;
-    color: white;
+    /* font-size: 6rem; /* Removed, was for icon */
+    /* color: white; /* Removed, was for icon */
     margin: 0 auto;
     animation: float 3s ease-in-out infinite;
+    overflow: hidden; /* Good practice if child elements might exceed rounded corners */
+}
+
+.profile-pic svg { /* Style the SVG directly if needed */
+    width: 150px; /* Control size of SVG within the container */
+    height: 150px;
 }
 
 @keyframes float {
@@ -272,9 +330,11 @@ nav.scrolled {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-secondary);
+    margin-bottom: 1rem; /* Added margin-bottom for p in about-text */
 }
 
 .about-text h3 {
+    font-family: 'Poppins', sans-serif; /* Ensure Poppins for this h3 */
     color: var(--text-primary);
     margin-bottom: 1rem;
     font-size: 1.5rem;
@@ -302,6 +362,7 @@ nav.scrolled {
 }
 
 .skill-category h3 {
+    font-family: 'Poppins', sans-serif; /* Skill category titles use Poppins */
     color: var(--primary-color);
     margin-bottom: 1rem;
     display: flex;
@@ -316,19 +377,21 @@ nav.scrolled {
 }
 
 .skill-tag {
-    background: rgba(0, 212, 255, 0.1);
-    color: var(--primary-color);
+    background: rgba(0, 191, 255, 0.1); /* Use new primary color with alpha */
+    color: var(--primary-color); /* Use new primary color */
     padding: 0.5rem 1rem;
     border-radius: 25px;
     font-size: 0.9rem;
-    border: 1px solid rgba(0, 212, 255, 0.3);
+    border: 1px solid rgba(0, 191, 255, 0.3); /* Use new primary color with alpha */
     transition: all 0.3s ease;
+    outline: none; /* Prepare for custom focus */
 }
 
-.skill-tag:hover {
-    background: var(--primary-color);
-    color: white;
+.skill-tag:hover, .skill-tag:focus {
+    background: var(--primary-color); /* Use new primary color */
+    color: var(--text-primary); /* Ensure text is readable */
     transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5); /* Add a subtle glow for focus */
 }
 
 /* Projects Section */
@@ -340,40 +403,70 @@ nav.scrolled {
 
 .project-card {
     background: var(--card-bg);
-    border-radius: 15px;
-    overflow: hidden;
-    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 15px; /* Keep */
+    overflow: hidden; /* Keep */
+    border: 1px solid rgba(0, 191, 255, 0.15); /* Slightly more visible border from new primary */
     transition: all 0.3s ease;
     position: relative;
+    outline: none;
+    display: flex; /* Use flexbox for better internal structure */
+    flex-direction: column; /* Stack content vertically */
 }
 
-.project-card:hover {
+.project-card:hover, .project-card:focus-within { /* Use focus-within for items inside */
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 191, 255, 0.25); /* Use new primary color, slightly stronger */
+    border-color: var(--primary-color); /* Highlight border */
 }
 
 .project-header {
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 107, 0.1));
+    background: rgba(var(--primary-color-rgb), 0.05); /* Use RGB version of primary for alpha */
+    border-bottom: 1px solid rgba(0, 191, 255, 0.1); /* Add a separator */
 }
 
 .project-card h3 {
     color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    font-size: 1.3rem;
+    margin-bottom: 0.25rem; /* Reduced margin if header has more padding */
+    font-size: 1.4rem; /* Slightly increased */
+    font-family: 'Poppins', sans-serif; /* Ensure it's Poppins */
+    font-weight: 600;
 }
 
 .project-description {
     color: var(--text-secondary);
-    padding: 0 1.5rem 1.5rem;
-    line-height: 1.6;
+    padding: 1.5rem; /* Consistent padding */
+    line-height: 1.7; /* Improved line height */
+    flex-grow: 1; /* Allows description to take up available space */
+}
+
+.project-description p {
+    margin-bottom: 1rem;
+}
+.project-description p:last-child {
+    margin-bottom: 0;
+}
+
+.project-description ul {
+    color: var(--text-secondary);
+    margin-left: 1.2rem; /* Keep bullet points indented */
+    margin-top: 0.75rem;
+    margin-bottom: 1rem; /* Space after list */
+    list-style-type: disc; /* Ensure default bullets */
+}
+
+.project-description ul li {
+    margin-bottom: 0.5rem;
 }
 
 .tech-stack {
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 1.5rem 1.5rem; /* Consistent with description padding */
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.75rem; /* Slightly increased gap */
+    border-top: 1px solid rgba(0, 191, 255, 0.1); /* Separator line above tech stack */
+    padding-top: 1.5rem; /* Space above tech tags */
+    margin-top: auto; /* Pushes tech stack to the bottom if card heights vary */
 }
 
 .tech-tag {
@@ -382,7 +475,7 @@ nav.scrolled {
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
     font-size: 0.8rem;
-    border: 1px solid rgba(78, 205, 196, 0.3);
+    border: 1px solid var(--accent-color); /* Make border more prominent */
 }
 
 /* Education Section */
@@ -435,6 +528,7 @@ nav.scrolled {
 }
 
 .education-institution {
+    font-family: 'Poppins', sans-serif; /* Education institution Poppins */
     color: var(--text-primary);
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
@@ -443,6 +537,7 @@ nav.scrolled {
 .education-degree {
     color: var(--text-secondary);
     margin-bottom: 0.5rem;
+    line-height: 1.7; /* Adjusted line-height for education-degree */
 }
 
 .education-grade {
@@ -502,6 +597,7 @@ nav.scrolled {
     display: block;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
+    font-family: 'Poppins', sans-serif; /* Form labels use Poppins */
     font-weight: 600;
 }
 
@@ -509,19 +605,24 @@ nav.scrolled {
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
-    background: rgba(0, 212, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    background: rgba(0, 191, 255, 0.05); /* Use new primary color with alpha */
+    border: 1px solid rgba(0, 191, 255, 0.2); /* Use new primary color with alpha */
     border-radius: 8px;
     color: var(--text-primary);
-    font-family: inherit;
-    transition: all 0.3s ease;
+    font-family: 'Open Sans', sans-serif; /* From previous step */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+/* Icon color for contact form button */
+.contact-form button.btn-primary i {
+    color: var(--text-primary); /* Ensure icon is visible against gradient */
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+    border-color: var(--primary-color); /* Uses new primary color */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.3); /* Use new primary color, slightly stronger shadow */
 }
 
 .form-group textarea {
@@ -630,8 +731,9 @@ footer {
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* Ensure transition is present */
     z-index: 1000;
+    outline: none; /* Prepare for custom focus */
 }
 
 .scroll-top.visible {
@@ -639,7 +741,8 @@ footer {
     visibility: visible;
 }
 
-.scroll-top:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+.scroll-top:hover, .scroll-top:focus {
+    transform: translateY(-3px) scale(1.05); /* Added scale for more pop */
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.4); /* Use new primary color, slightly stronger */
+    filter: brightness(1.1); /* Slightly brighten */
 }
